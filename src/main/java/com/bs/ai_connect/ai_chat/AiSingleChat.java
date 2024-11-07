@@ -1,5 +1,13 @@
 package com.bs.ai_connect.ai_chat;
 
-public class AiSingleChat {
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+public class AiSingleChat extends AiChatCompletion{
+
+    @Override
+    public String askAi(String content) {
+        return "";
+    }
 
 }
