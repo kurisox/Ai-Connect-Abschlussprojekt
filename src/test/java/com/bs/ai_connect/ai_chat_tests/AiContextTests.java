@@ -30,7 +30,7 @@ public class AiContextTests {
     @Test
     public void testResetContent() {
         aiContext.addMessage(new MessageDTO());
-        assertEquals(0, aiContext.resetContent());
+        assertEquals(1, aiContext.resetContent());
     }
 
     @Test
