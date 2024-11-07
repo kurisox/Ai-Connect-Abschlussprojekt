@@ -30,16 +30,14 @@ public class AiContextTests {
     @Test
     public void testResetContent() {
         aiContext.addMessage(new MessageDTO());
-        int result = aiContext.resetContent();
-        assertEquals(0, result);
+        assertEquals(0, aiContext.resetContent());
     }
 
     @Test
     public void testSummarizeMessages() {
         aiContext.addMessage(new MessageDTO());
         aiContext.addMessage(new MessageDTO());
-        int result = aiContext.summarizeMessages();
-        assertEquals(1, result);
+        assertEquals(1, aiContext.summarizeMessages());
     }
     
 }
