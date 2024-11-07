@@ -14,6 +14,7 @@ import com.bs.ai_connect.dto.MessageDTO;
 public class AiContextTests {
 
     private AiContext aiContext;
+    private String message = "Hello, World!";
 
     @BeforeEach
     public void setup(){
@@ -22,21 +23,21 @@ public class AiContextTests {
 
     @Test
     public void testAddMessage_Success() {
-        MessageDTO message = new MessageDTO();
+        MessageDTO message = new MessageDTO(this.aiContext.getRole(), this.message);
         boolean result = aiContext.addMessage(message);
         assertTrue(result);
     }
 
     @Test
     public void testResetContent() {
-        aiContext.addMessage(new MessageDTO());
+        aiContext.addMessage(new MessageDTO(this.aiContext.getRole(), this.message));   
         assertEquals(1, aiContext.resetContent());
     }
 
     @Test
     public void testSummarizeMessages() {
-        aiContext.addMessage(new MessageDTO());
-        aiContext.addMessage(new MessageDTO());
+        aiContext.addMessage(new MessageDTO(this.aiContext.getRole(), this.message));
+        aiContext.addMessage(new MessageDTO(this.aiContext.getRole(), this.message));
         assertEquals(1, aiContext.summarizeMessages());
     }
     
