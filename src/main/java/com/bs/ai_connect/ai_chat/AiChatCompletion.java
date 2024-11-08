@@ -11,8 +11,8 @@ public abstract class AiChatCompletion {
     private AiContext aiContext;
     private AiRequester aiRequester;
     
-    @Value("${env.data.devMode}")
-    private boolean devMode;
+    @Value("${env.data.mockMode}")
+    private boolean mockMode;
 
     public abstract String askAi(String content);
 
