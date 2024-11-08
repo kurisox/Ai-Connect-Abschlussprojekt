@@ -11,11 +11,11 @@ import com.bs.ai_connect.ai_chat.AiSingleChat;
 
 @RestController
 @RequestMapping("/api/simple-answer")
-public class SimpleAnswerController {
+public class SingleChatController {
 
     private AiChatCompletion simpleAnswer;
 
-    public SimpleAnswerController(){
+    public SingleChatController(){
         this.simpleAnswer = new AiSingleChat();
     }
 
