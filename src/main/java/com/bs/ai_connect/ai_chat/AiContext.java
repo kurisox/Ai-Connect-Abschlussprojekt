@@ -12,8 +12,8 @@ import lombok.Getter;
 @Getter
 public class AiContext {
 
-    @Value("${env.data.devMode}")
-    private boolean devMode;
+    @Value("${env.data.mockMode}")
+    private boolean mockMode;
 
     private List<MessageDTO> messages;
     
