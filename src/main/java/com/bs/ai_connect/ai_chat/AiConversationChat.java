@@ -20,16 +20,13 @@ public class AiConversationChat extends AiChatCompletion{
     private int maxTokens;
     private int currentTokens;
 
-    @Value("${env.data.userRole}")
-    private String userRole;
-
     @Override
     public String askAi(String content) {
         if(super.isMockMode()){
             return "MockMode";
         }else{
             if(this.currentTokens + 200 >= this.maxTokens){
-                super.getAiContext().summarizeMessages(userRole);
+                super.getAiContext().summarizeMessages(super.getUserRole());
             }
             super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), content));
             Request request = super.getAiRequester().requestBuilder(content);
