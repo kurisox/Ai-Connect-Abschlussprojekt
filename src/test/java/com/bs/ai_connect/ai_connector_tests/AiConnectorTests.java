@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.bs.ai_connect.ai_connector.AiConenctor;
+import com.bs.ai_connect.ai_connector.AiConnector;
 
 
 
@@ -15,17 +15,17 @@ public class AiConnectorTests {
 
     @Test
     public void testGetInstance() {
-        assertNotNull(AiConenctor.getInstance());
+        assertNotNull(AiConnector.getInstance());
     }
 
     @Test
     public void testGetInstance_Singleton() {
-        assertSame(AiConenctor.getInstance(), AiConenctor.getInstance());
+        assertSame(AiConnector.getInstance(), AiConnector.getInstance());
     }
 
     @Test
     public void testHttpClientInitialization() {
-        assertNotNull(AiConenctor.getInstance().getHTTP_CLIENT());
+        assertNotNull(AiConnector.getInstance().getHTTP_CLIENT());
     }
 
 }
