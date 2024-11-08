@@ -41,7 +41,8 @@ public class AiRequester {
     public ResponseBody apiCall(Request request) {
         Call call = AiConnector.getInstance().getHTTP_CLIENT().newCall(request);
         if(this.mockMode) {
-            return null;
+            String jsonResponse = "{\"id\":\"id\",\"object\":\"object\",\"created\":1,\"model\":\"model\",\"choices\":[{\"id\":1,\"message\":{\"role\":\"system\",\"content\":\"Hello from AI\"},\"logprobs\":\"logprobs\",\"finish\":\"finisched\"}],\"usage\":{\"id\":1,\"turn\":1,\"timestamp\":1}}";
+            return ResponseBody.create(jsonResponse, MediaType.get(json));
         }else{
             try {
                 Response response = call.execute();
