@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({ "content", "role" })
+@JsonPropertyOrder({"role", "content" })
 public record MessageDTO(
         @JsonProperty("role") String role,
         @JsonProperty("content") String content) {
