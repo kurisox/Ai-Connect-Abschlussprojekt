@@ -1,10 +1,7 @@
 package com.bs.ai_connect.mapper;
 
-import com.bs.ai_connect.dto.ChoicesDTO;
+
 import com.bs.ai_connect.dto.ContextDTO;
-import com.bs.ai_connect.dto.MessageDTO;
-import com.bs.ai_connect.dto.ResponseDTO;
-import com.bs.ai_connect.dto.UsageDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
