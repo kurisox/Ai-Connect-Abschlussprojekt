@@ -22,6 +22,6 @@ public class AiSingleChatTests {
     public void testAskAi_Success() {
         String content = "Test content";
         String response = aiSingleChat.askAi(content);
-        assertEquals("", response);
+        assertEquals("Hello from AI", response);
     }
 }
