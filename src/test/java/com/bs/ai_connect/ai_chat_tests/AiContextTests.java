@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bs.ai_connect.ai_chat.AiContext.AiContext;
 import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
-import com.bs.ai_connect.ai_chat.AiRequester.IAiRequester;
 import com.bs.ai_connect.dto.MessageDTO;
 
 @SpringBootTest
