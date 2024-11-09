@@ -1,27 +1,38 @@
 package com.bs.ai_connect.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bs.ai_connect.ai_chat.AiChatCompletion;
-import com.bs.ai_connect.ai_chat.AiSingleChat;
+import com.bs.ai_connect.ai_chat.AiChatCompletion.AiChatCompletion;
+import com.bs.ai_connect.ai_chat.AiChatCompletion.AiConversationChat;
+import com.bs.ai_connect.ai_chat.AiChatCompletion.AiSingleChat;
+import com.bs.ai_connect.ai_chat.AiChatCompletion.IAiCompletion;
+import com.bs.ai_connect.ai_chat.AiChatCompletion.MockChat;
 
 
 @RestController
-@RequestMapping("/api/simple-answer")
+@RequestMapping("/api/single-chat")
 public class SingleChatController {
 
-    private AiChatCompletion simpleAnswer;
+    private IAiCompletion aiCompletion;
 
-    public SingleChatController(){
-        this.simpleAnswer = new AiSingleChat();
+    @Value("${env.data.mockMode}")
+    private boolean mockMode;
+
+    public SingleChatController() {
+        if(mockMode){
+            this.aiCompletion = new MockChat();
+        } else {
+            this.aiCompletion = new AiSingleChat();
+        }               
     }
 
     @PostMapping("/")
     public String postAnswer(@RequestParam String question){
-        String answer = simpleAnswer.askAi(question);
+        String answer = aiCompletion.askAI(question);
         return answer;
     }
 
