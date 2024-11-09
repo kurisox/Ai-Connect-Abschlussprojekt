@@ -15,45 +15,46 @@ import okhttp3.Request;
 import okhttp3.ResponseBody;
 
 @NoArgsConstructor
-public class AiConversationChat extends AiChatCompletion implements IAiCompletion{
+public class AiConversationChat extends AiChatCompletion implements IAiCompletion {
     @Value("${env.data.maxTokens}")
     private int maxTokens;
+
+    @Value("${env.data.errorMsg}")
+    private String errorMessage;
+
     private int currentTokens;
 
     @Override
     public String askAI(String question) {
-        if(super.isMockMode()){
-            return "MockMode";
-        }else{
-            if(this.currentTokens + 200 >= this.maxTokens){
-                super.getAiContext().summarizeMessages(super.getUserRole());
+        if (this.currentTokens + 200 >= this.maxTokens) {
+            int tokens = super.getAiContext().summarizeMessages(super.getUserRole());
+            if (tokens == -1) {
+                return errorMessage;
             }
-            super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), question));
-            Request request = super.getAiRequester().requestBuilder(question);
-            ResponseBody responseBody = super.getAiRequester().apiCall(request);
-            String answer = "";
-            if(responseBody != null) {
-                answer = "Es ist etwas schief gegangen";
-            }
-            ResponseDTO response = null;
-            try {
-                response = AiResponseMapper.mapResponse(responseBody);
-                answer = getResponseMsg(response);
-            } catch (JsonMappingException e) {
-                e.printStackTrace();
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            updateToken(response);
-            return answer;
         }
+        super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), question));
+        Request request = super.getAiRequester().requestBuilder(question);
+        ResponseBody responseBody = super.getAiRequester().apiCall(request);
+        String answer = "";
+        if (responseBody != null) {
+            return errorMessage;
+        }
+        ResponseDTO response = null;
+        try {
+            response = AiResponseMapper.mapResponse(responseBody);
+            answer = getResponseMsg(response);
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        updateToken(response);
+        return answer;
     }
 
-    private void updateToken(ResponseDTO response){
+    private void updateToken(ResponseDTO response) {
         this.currentTokens = response.usage().totalTokens();
     }
-
-    
 }
