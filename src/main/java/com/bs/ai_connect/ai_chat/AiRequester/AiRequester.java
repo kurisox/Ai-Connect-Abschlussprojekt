@@ -13,7 +13,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-@NoArgsConstructor
 @Getter
 public class AiRequester implements IAiRequester {
     @Value("${env.data.mockMode}")
@@ -29,6 +28,7 @@ public class AiRequester implements IAiRequester {
     private String json;
 
     public Request requestBuilder(String content) {
+        System.out.println(content_type);
         RequestBody requestBody = RequestBody.create(content, MediaType.parse(content_type));
         Request request = new Request.Builder()
                 .url(api_endpoint)
@@ -40,17 +40,13 @@ public class AiRequester implements IAiRequester {
 
     public ResponseBody apiCall(Request request) {
         Call call = AiConnector.getInstance().getHTTP_CLIENT().newCall(request);
-        if(this.mockMode) {
-            String jsonResponse = "{\"id\":\"id\",\"object\":\"object\",\"created\":1,\"model\":\"model\",\"choices\":[{\"id\":1,\"message\":{\"role\":\"system\",\"content\":\"Hello from AI\"},\"logprobs\":\"logprobs\",\"finish\":\"finisched\"}],\"usage\":{\"id\":1,\"turn\":1,\"timestamp\":1}}";
-            return ResponseBody.create(jsonResponse, MediaType.get(json));
-        }else{
-            try {
-                Response response = call.execute();
-                return response.body();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
+        try {
+            Response response = call.execute();
+            return response.body();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
+
 }
