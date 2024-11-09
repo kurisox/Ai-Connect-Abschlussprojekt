@@ -1,0 +1,13 @@
+services:
+  ai-connect:
+    container_name: ai-connect
+    build:
+      context: .
+      dockerfile: DockerfileDeploy
+    networks:
+      - frontend-aiconnect
+      - aiconnect-aiinstance
+
+networks:
+  frontend-aiconnect:
+  aiconnect-aiinstance:
