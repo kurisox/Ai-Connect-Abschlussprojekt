@@ -15,7 +15,7 @@ import okhttp3.ResponseBody;
 
 @NoArgsConstructor
 @Getter
-public class AiRequester {
+public class AiRequester implements IAiRequester {
     @Value("${env.data.mockMode}")
     private boolean mockMode;
 
