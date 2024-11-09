@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bs.ai_connect.ai_chat.AiChatCompletion.AiChatCompletion;
-import com.bs.ai_connect.ai_chat.AiChatCompletion.AiConversationChat;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.AiSingleChat;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.IAiCompletion;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.MockChat;
