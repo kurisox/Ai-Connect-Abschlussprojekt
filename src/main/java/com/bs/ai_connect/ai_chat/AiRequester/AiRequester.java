@@ -1,4 +1,4 @@
-package com.bs.ai_connect.ai_chat;
+package com.bs.ai_connect.ai_chat.AiRequester;
 
 import org.springframework.beans.factory.annotation.Value;
 

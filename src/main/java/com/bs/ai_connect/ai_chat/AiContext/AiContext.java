@@ -1,4 +1,4 @@
-package com.bs.ai_connect.ai_chat;
+package com.bs.ai_connect.ai_chat.AiContext;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
 import com.bs.ai_connect.dto.MessageDTO;
 import com.bs.ai_connect.dto.ResponseDTO;
 import com.bs.ai_connect.mapper.AiResponseMapper;

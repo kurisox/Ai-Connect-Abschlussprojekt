@@ -1,7 +1,9 @@
-package com.bs.ai_connect.ai_chat;
+package com.bs.ai_connect.ai_chat.AiChatCompletion;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import com.bs.ai_connect.ai_chat.AiContext.AiContext;
+import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
 import com.bs.ai_connect.dto.ResponseDTO;
 
 import lombok.Getter;
