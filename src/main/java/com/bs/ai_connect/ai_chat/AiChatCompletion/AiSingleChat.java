@@ -24,6 +24,16 @@ public class AiSingleChat extends AiChatCompletion implements IAiCompletion{
 
     @Override
     public String askAI(QuestionDTO question) {
+        if(super.getAiContext() == null) {
+            System.out.println("AiContext is null");
+        }else{
+            System.out.println("AiContext is not null");
+        }
+        if(super.getAiRequester() == null) {
+            System.out.println("AiRequester is null");
+        }else{
+            System.out.println("AiRequester is not null");
+        }
         super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), question.question()));
         String mappedQuestion;
         
