@@ -20,9 +20,6 @@ import okhttp3.ResponseBody;
 @Getter
 public class AiContext implements IAiContext{
 
-    @Value("${env.data.mockMode}")
-    private boolean mockMode;
-
     private List<MessageDTO> messages;
 
     private IAiRequester aiRequester;

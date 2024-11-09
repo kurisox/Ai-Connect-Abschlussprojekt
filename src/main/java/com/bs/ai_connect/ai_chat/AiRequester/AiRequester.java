@@ -14,8 +14,6 @@ import okhttp3.ResponseBody;
 
 @Getter
 public class AiRequester implements IAiRequester {
-    @Value("${env.data.mockMode}")
-    private boolean mockMode;
 
     @Value("${env.data.api_endpoint}")
     private String api_endpoint;
