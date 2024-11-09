@@ -1,0 +1,49 @@
+spring.application.name=ai-connect
+
+#enter spring profile
+spring.profiles.active=
+
+# AI Context
+
+#enter ai persona as a string
+env.data.aiPersona=
+
+#enter the role of the ai in the conversation (system for example)
+env.data.role=
+
+# enter the content of the question to summarize the conversatzion
+env.data.summarizedMsg=
+
+# enter the user role (user for example)
+env.data.userRole=
+
+
+# AI Requester
+
+#enter the endpoint of the AI
+env.data.api_endpoint=
+
+env.data.content_type=Content-Type
+env.data.json=application/json
+
+#ChatConversation
+
+# enter the max token for the AI
+env.data.maxTokens=
+
+# enter the error response
+env.data.errorMsg=
+
+# enter the model of the AI (gpt-3.5-turbo for example)
+env.data.model=
+
+
+# AI Connector
+
+#enter the timeout for the connection to the ai
+env.data.timeout=
+
+# Mock Chat
+
+env.data.shortAnswer=I am a personal assistant
+env.data.longAnswer=I am a personal assistant. I am here to help you with your questions. I can provide you with information, answer your questions, and help you with your tasks. I am always learning and improving, so feel free to ask me anything. I am here to help you.
