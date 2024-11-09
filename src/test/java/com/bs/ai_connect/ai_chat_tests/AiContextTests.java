@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bs.ai_connect.ai_chat.AiContext.AiContext;
+import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
+import com.bs.ai_connect.ai_chat.AiRequester.IAiRequester;
 import com.bs.ai_connect.dto.MessageDTO;
 
 @SpringBootTest
@@ -36,7 +38,9 @@ public class AiContextTests {
 
     @BeforeEach
     public void setup() {
-        this.aiContext = new AiContext();
+        this.aiContext = new AiContext(new AiRequester() {
+            
+        });
         Field[] fields = aiContext.getClass().getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
