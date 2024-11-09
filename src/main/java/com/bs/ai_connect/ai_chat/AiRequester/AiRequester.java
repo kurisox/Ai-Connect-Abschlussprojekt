@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import com.bs.ai_connect.ai_connector.AiConnector;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -28,7 +27,6 @@ public class AiRequester implements IAiRequester {
     private String json;
 
     public Request requestBuilder(String content) {
-        System.out.println(content_type);
         RequestBody requestBody = RequestBody.create(content, MediaType.parse(content_type));
         Request request = new Request.Builder()
                 .url(api_endpoint)
