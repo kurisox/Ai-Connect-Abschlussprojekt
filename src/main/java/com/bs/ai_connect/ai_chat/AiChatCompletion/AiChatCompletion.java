@@ -2,8 +2,8 @@ package com.bs.ai_connect.ai_chat.AiChatCompletion;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.bs.ai_connect.ai_chat.AiContext.AiContext;
-import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
+import com.bs.ai_connect.ai_chat.AiContext.IAiContext;
+import com.bs.ai_connect.ai_chat.AiRequester.IAiRequester;
 import com.bs.ai_connect.dto.ResponseDTO;
 
 import lombok.Getter;
@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public abstract class AiChatCompletion {
-    private AiContext aiContext;
-    private AiRequester aiRequester;
+    private IAiContext aiContext;
+    private IAiRequester aiRequester;
     
     @Value("${env.data.maxTokens}")
     private int maxTokens;
