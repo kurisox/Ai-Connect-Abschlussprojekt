@@ -68,7 +68,7 @@ public class AiContextTests {
     public void testSummarizeMessages1() {
         aiContext.addMessage(new MessageDTO(this.aiContext.getRole(), this.message));
         aiContext.addMessage(new MessageDTO(this.aiContext.getRole(), this.message));
-        assertEquals(1, aiContext.summarizeMessages(userRole));
+        assertEquals(1, aiContext.summarizeMessages(userRole, "model", 200));
     }
 
     @Test
