@@ -1,5 +1,6 @@
 package com.bs.ai_connect.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ public class SingleChatController {
 
     private IAiCompletion aiCompletion;
 
-    public SingleChatController(IAiCompletion aiCompletion){
+    public SingleChatController(@Qualifier("aiSingleChat") IAiCompletion aiCompletion){
         this.aiCompletion = aiCompletion;
     }
     

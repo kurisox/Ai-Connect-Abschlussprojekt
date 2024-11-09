@@ -1,21 +1,20 @@
 package com.bs.ai_connect.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bs.ai_connect.ai_chat.AiChatCompletion.IAiCompletion;
 import com.bs.ai_connect.dto.QuestionDTO;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 @RestController
-@RequestMapping("/api/conversation-chat")
-public class ConversationChatController {
+@RequestMapping("/api/mock-chat")
+public class MockChatController {
     private IAiCompletion aiCompletion;
 
-    public ConversationChatController(@Qualifier("aiConversationChat") IAiCompletion aiCompletion){
+    public MockChatController(@Qualifier("mockChat") IAiCompletion aiCompletion){
         this.aiCompletion = aiCompletion;
     }
 
@@ -24,5 +23,4 @@ public class ConversationChatController {
         String answer = aiCompletion.askAI(question);
         return answer;
     }
-
 }

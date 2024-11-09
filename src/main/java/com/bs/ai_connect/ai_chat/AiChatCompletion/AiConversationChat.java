@@ -2,6 +2,8 @@ package com.bs.ai_connect.ai_chat.AiChatCompletion;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import com.bs.ai_connect.dto.ContextDTO;
 import com.bs.ai_connect.dto.MessageDTO;
 import com.bs.ai_connect.dto.QuestionDTO;
