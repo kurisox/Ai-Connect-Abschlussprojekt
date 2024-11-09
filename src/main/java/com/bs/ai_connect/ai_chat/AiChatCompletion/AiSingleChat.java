@@ -13,12 +13,12 @@ import okhttp3.Request;
 import okhttp3.ResponseBody;
 
 @NoArgsConstructor
-public class AiSingleChat extends AiChatCompletion{
+public class AiSingleChat extends AiChatCompletion implements IAiCompletion{
 
     @Override
-    public String askAi(String content) {
-        super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), content));
-        Request request = super.getAiRequester().requestBuilder(content);
+    public String askAI(String question) {
+        super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), question));
+        Request request = super.getAiRequester().requestBuilder(question);
         ResponseBody responsebody = super.getAiRequester().apiCall(request);
         String answer = "";
         if(responsebody != null) {
@@ -36,5 +36,4 @@ public class AiSingleChat extends AiChatCompletion{
         }
         return answer;
     }
-
 }

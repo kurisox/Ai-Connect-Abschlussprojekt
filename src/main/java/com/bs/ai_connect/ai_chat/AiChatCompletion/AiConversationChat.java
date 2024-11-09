@@ -15,21 +15,21 @@ import okhttp3.Request;
 import okhttp3.ResponseBody;
 
 @NoArgsConstructor
-public class AiConversationChat extends AiChatCompletion{
+public class AiConversationChat extends AiChatCompletion implements IAiCompletion{
     @Value("${env.data.maxTokens}")
     private int maxTokens;
     private int currentTokens;
 
     @Override
-    public String askAi(String content) {
+    public String askAI(String question) {
         if(super.isMockMode()){
             return "MockMode";
         }else{
             if(this.currentTokens + 200 >= this.maxTokens){
                 super.getAiContext().summarizeMessages(super.getUserRole());
             }
-            super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), content));
-            Request request = super.getAiRequester().requestBuilder(content);
+            super.getAiContext().addMessage(new MessageDTO(super.getUserRole(), question));
+            Request request = super.getAiRequester().requestBuilder(question);
             ResponseBody responseBody = super.getAiRequester().apiCall(request);
             String answer = "";
             if(responseBody != null) {
@@ -49,10 +49,11 @@ public class AiConversationChat extends AiChatCompletion{
             updateToken(response);
             return answer;
         }
-        
     }
 
     private void updateToken(ResponseDTO response){
         this.currentTokens = response.usage().totalTokens();
     }
+
+    
 }
