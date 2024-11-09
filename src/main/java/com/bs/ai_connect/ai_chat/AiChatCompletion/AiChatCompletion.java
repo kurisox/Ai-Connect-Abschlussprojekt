@@ -21,8 +21,6 @@ public abstract class AiChatCompletion {
     @Value("${env.data.userRole}")
     private String userRole;
 
-    public abstract String askAi(String content);
-
     protected String getResponseMsg(ResponseDTO response){
         return response.choices()[0].message().content();
     }
