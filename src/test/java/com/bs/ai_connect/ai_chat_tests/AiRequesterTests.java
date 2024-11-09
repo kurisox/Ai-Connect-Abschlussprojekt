@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.bs.ai_connect.ai_chat.AiRequester;
+import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
 
 import okhttp3.Request;
 
