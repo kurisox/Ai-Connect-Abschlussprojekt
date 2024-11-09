@@ -2,6 +2,8 @@ package com.bs.ai_connect.ai_chat.AiChatCompletion;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import com.bs.ai_connect.dto.QuestionDTO;
+
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -13,8 +15,8 @@ public class MockChat implements IAiCompletion {
     private String longAnswer;
 
     @Override
-    public String askAI(String question) {
-        if (question.equals("1")) {
+    public String askAI(QuestionDTO question) {
+        if (question.question().equals("1")) {
             return shortAnswer;
         } else {
             return longAnswer;

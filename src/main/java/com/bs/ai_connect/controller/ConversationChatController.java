@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.AiConversationChat;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.IAiCompletion;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.MockChat;
+import com.bs.ai_connect.dto.QuestionDTO;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class ConversationChatController {
     }
 
     @PostMapping("/")
-    public String postQuestion(@RequestBody String question) {
+    public String postQuestion(@RequestBody QuestionDTO question) {
         String answer = aiCompletion.askAI(question);
         return answer;
     }

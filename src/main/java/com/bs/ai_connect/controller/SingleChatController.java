@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.AiSingleChat;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.IAiCompletion;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.MockChat;
+import com.bs.ai_connect.dto.QuestionDTO;
 
 
 @RestController
@@ -27,9 +28,9 @@ public class SingleChatController {
             this.aiCompletion = new AiSingleChat();
         }               
     }
-
+    
     @PostMapping("/")
-    public String postAnswer(@RequestParam String question){
+    public String postAnswer(@RequestParam QuestionDTO question){
         String answer = aiCompletion.askAI(question);
         return answer;
     }
