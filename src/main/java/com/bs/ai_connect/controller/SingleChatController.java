@@ -1,14 +1,11 @@
 package com.bs.ai_connect.controller;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bs.ai_connect.ai_chat.AiChatCompletion.AiSingleChat;
 import com.bs.ai_connect.ai_chat.AiChatCompletion.IAiCompletion;
-import com.bs.ai_connect.ai_chat.AiChatCompletion.MockChat;
 import com.bs.ai_connect.dto.QuestionDTO;
 
 
@@ -18,19 +15,12 @@ public class SingleChatController {
 
     private IAiCompletion aiCompletion;
 
-    @Value("${env.data.mockMode}")
-    private boolean mockMode;
-
-    public SingleChatController() {
-        if(mockMode){
-            this.aiCompletion = new MockChat();
-        } else {
-            this.aiCompletion = new AiSingleChat();
-        }               
+    public SingleChatController(IAiCompletion aiCompletion){
+        this.aiCompletion = aiCompletion;
     }
     
     @PostMapping("/")
-    public String postAnswer(@RequestParam QuestionDTO question){
+    public String postAnswer(@RequestBody QuestionDTO question){
         String answer = aiCompletion.askAI(question);
         return answer;
     }
