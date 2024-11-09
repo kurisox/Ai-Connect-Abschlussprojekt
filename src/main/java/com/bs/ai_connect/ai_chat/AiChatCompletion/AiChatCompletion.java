@@ -15,8 +15,15 @@ public abstract class AiChatCompletion {
     private AiContext aiContext;
     private AiRequester aiRequester;
     
-    @Value("${env.data.mockMode}")
-    private boolean mockMode;
+    @Value("${env.data.maxTokens}")
+    private int maxTokens;
+    
+    @Value("${env.data.errorMsg}")
+    private String errorMessage;
+
+    @Value("${env.data.model}")
+    private String model;
+
 
     @Value("${env.data.userRole}")
     private String userRole;
