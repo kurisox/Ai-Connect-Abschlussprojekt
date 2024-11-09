@@ -7,6 +7,6 @@ public interface IAiContext {
 
     boolean addMessage(MessageDTO message);
     int resetContent();
-    int summarizedMessages(String role);
+    int summarizeMessages(String role);
     ResponseDTO summarize(String role);
 }

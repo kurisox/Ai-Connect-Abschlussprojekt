@@ -55,7 +55,7 @@ public class AiContext implements IAiContext{
     }
 
     @Override
-    public int summarizedMessages(String role) {
+    public int summarizeMessages(String role) {
         ResponseDTO responseMessage = summarize(summarizeMsg);
         if(responseMessage == null){
             return -1;
