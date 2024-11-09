@@ -18,7 +18,7 @@ import okhttp3.Request;
 import okhttp3.ResponseBody;
 
 @Getter
-public class AiContext {
+public class AiContext implements IAiContext{
 
     @Value("${env.data.mockMode}")
     private boolean mockMode;
@@ -41,39 +41,36 @@ public class AiContext {
         this.aiRequester = new AiRequester();
     }
 
-    public boolean addMessage(MessageDTO message){
+    @Override
+    public boolean addMessage(MessageDTO message) {
         this.messages.add(message);
         return this.messages.contains(message);
     }
 
-    public int resetContent(){
+    @Override
+    public int resetContent() {
         this.messages.clear();
         this.messages.add(new MessageDTO(this.role, this.aiPersona));
         return this.messages.size();
     }
 
-    public int summarizeMessages(String role){
-        int listSize;
-        String responseMessage = "Context wurde zusammengefasst";
-        if(!this.mockMode){
-            responseMessage = summarize(role);
-            if(responseMessage == null){
-                return -1;
-            }
+    @Override
+    public int summarizedMessages(String role) {
+        ResponseDTO responseMessage = summarize(summarizeMsg);
+        if(responseMessage == null){
+            return -1;
         }
         this.messages.clear();
         this.messages.add(new MessageDTO(this.role, this.aiPersona + "\n" + responseMessage));
-        listSize = this.messages.size();
-        return listSize;
+        return responseMessage.usage().completionTokens();
     }
 
-    private String summarize(String role){
+    @Override
+    public ResponseDTO summarize(String role) {
         Request summarizeRequest = aiRequester.requestBuilder(summarizeMsg);
         ResponseBody summarizeResponse = aiRequester.apiCall(summarizeRequest);
-        ResponseDTO responseDTO;
         try {
-            responseDTO = AiResponseMapper.mapResponse(summarizeResponse);
-            return responseDTO.choices()[0].message().content();
+            return AiResponseMapper.mapResponse(summarizeResponse);
         } catch (JsonMappingException e) {
             e.printStackTrace();
         } catch (JsonProcessingException e) { 
