@@ -1,0 +1,18 @@
+services:
+  ai-connect:
+    container_name: ai-connect
+    build:
+      context: .
+      dockerfile: DockerfileDev
+    ports:
+      - "8080:8080"
+    volumess:
+      - ./ai-connect/main/java/com/bs/ai-connect:/usr/src/app
+      - ./ai-connect/main/resources:/usr/src/app/resources
+    networks:
+      - frontend-aiconnect
+      - aiconnect-aiinstance
+
+networks:
+  frontend-aiconnect:
+  aiconnect-aiinstance:
