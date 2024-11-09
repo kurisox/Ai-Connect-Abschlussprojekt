@@ -7,9 +7,7 @@ import com.bs.ai_connect.ai_chat.AiRequester.IAiRequester;
 import com.bs.ai_connect.dto.ResponseDTO;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Getter
 public abstract class AiChatCompletion {
     private IAiContext aiContext;
@@ -24,9 +22,13 @@ public abstract class AiChatCompletion {
     @Value("${env.data.model}")
     private String model;
 
-
     @Value("${env.data.userRole}")
     private String userRole;
+
+    public AiChatCompletion(IAiContext aiContext, IAiRequester aiRequester){
+        this.aiContext = aiContext;
+        this.aiRequester = aiRequester;
+    }
 
     protected String getResponseMsg(ResponseDTO response){
         return response.choices()[0].message().content();

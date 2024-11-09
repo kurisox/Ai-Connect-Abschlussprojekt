@@ -2,6 +2,8 @@ package com.bs.ai_connect.ai_chat.AiChatCompletion;
 
 import java.io.IOException;
 
+import com.bs.ai_connect.ai_chat.AiContext.IAiContext;
+import com.bs.ai_connect.ai_chat.AiRequester.IAiRequester;
 import com.bs.ai_connect.dto.ContextDTO;
 import com.bs.ai_connect.dto.MessageDTO;
 import com.bs.ai_connect.dto.QuestionDTO;
@@ -11,14 +13,18 @@ import com.bs.ai_connect.mapper.JavaToJSONMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import lombok.NoArgsConstructor;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 
-@NoArgsConstructor
+
 public class AiConversationChat extends AiChatCompletion implements IAiCompletion {
 
     private int currentTokens;
+
+    public AiConversationChat(IAiContext aiContext, IAiRequester aiRequester) {
+        super(aiContext, aiRequester);
+        this.currentTokens = 0;
+    }
 
     @Override
     public String askAI(QuestionDTO question) {
