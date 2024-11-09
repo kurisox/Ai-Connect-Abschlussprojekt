@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
+import com.bs.ai_connect.ai_chat.AiRequester.IAiRequester;
 import com.bs.ai_connect.dto.MessageDTO;
 import com.bs.ai_connect.dto.ResponseDTO;
 import com.bs.ai_connect.mapper.AiResponseMapper;
@@ -25,7 +25,7 @@ public class AiContext implements IAiContext{
 
     private List<MessageDTO> messages;
 
-    private AiRequester aiRequester;
+    private IAiRequester aiRequester;
     
     @Value("${env.data.aiPersona}")
     private String aiPersona;
@@ -36,9 +36,9 @@ public class AiContext implements IAiContext{
     @Value("${env.data.summarizeMsg}")
     private String summarizeMsg;
 
-    public AiContext(){
+    public AiContext(IAiRequester aiRequester){
         this.messages = new ArrayList<>();
-        this.aiRequester = new AiRequester();
+        this.aiRequester = aiRequester;
     }
 
     @Override
