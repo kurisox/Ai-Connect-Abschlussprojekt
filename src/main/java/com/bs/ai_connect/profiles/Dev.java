@@ -10,10 +10,6 @@ import com.bs.ai_connect.ai_chat.AiChatCompletion.MockChat;
 import com.bs.ai_connect.ai_chat.AiContext.AiContext;
 import com.bs.ai_connect.ai_chat.AiRequester.AiRequester;
 
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 @Profile("dev")
@@ -46,14 +42,4 @@ public class Dev {
     MockChat mockChat() {
         return new MockChat();
     }
-
-    @Bean
-    Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.any())                          
-          .build();                                           
-    }
-
 }
