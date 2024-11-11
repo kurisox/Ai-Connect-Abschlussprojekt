@@ -30,7 +30,7 @@ public class AiContext implements IAiContext{
     @Value("${env.data.role}")
     private String role;
 
-    @Value("${env.data.summarizeMsg}")
+    @Value("${env.data.summarizedMsg}")
     private String summarizeMsg;
 
     public AiContext(IAiRequester aiRequester){
